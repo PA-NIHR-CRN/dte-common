@@ -3,7 +3,7 @@
     <PropertyGroup>
         <TargetFramework>netstandard2.1</TargetFramework>
         <PackageDescription>DTE common classes to share across different projects</PackageDescription>
-        <RepositoryUrl>https://github.com/nihr-interoperability-platform/dte-common</RepositoryUrl>
+        <RepositoryUrl>https://github.com/pa-nihr-crn/dte-common</RepositoryUrl>
 
     </PropertyGroup>
 
