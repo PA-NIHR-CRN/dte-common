@@ -31,7 +31,9 @@ namespace Dte.Common.Exceptions.Common
         public const string ChangeEmailError = "Change_Email_Error";
         public const string ChangeEmailErrorInvalidParameter = "Change_Password_Error_Invalid_Parameter";
         public const string ChangeEmailErrorUnauthorised = "Change_Email_Error_Unauthorised";
-        
+        public const string UserIsUnderage = "User_Is_Underage";
+        public const string UnableToMatchAccounts = "Unable_To_Match_Accounts";
+
         // Verification error codes
         public const string ResendVerificationEmailError = "Resend_Verification_Email_Error";
         public const string ResendVerificationEmailErrorUserAlreadyConfirmed = "Resend_Verification_Email_Error_User_Already_Confirmed";
