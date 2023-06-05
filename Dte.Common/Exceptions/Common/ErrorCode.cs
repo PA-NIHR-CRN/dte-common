@@ -12,7 +12,6 @@ namespace Dte.Common.Exceptions.Common
         
         // User & Password error codes
         public const string PasswordValidationError = "Password_Validation_Error";
-        
         public const string SignUpError = "SignUp_Error";
         public const string SignUpErrorUsernameExists = "SignUp_Error_Username_Exists";
         public const string SignUpErrorInvalidParameter = "SignUp_Error_Invalid_Parameter";
@@ -33,6 +32,7 @@ namespace Dte.Common.Exceptions.Common
         public const string ChangeEmailErrorUnauthorised = "Change_Email_Error_Unauthorised";
         public const string UserIsUnderage = "User_Is_Underage";
         public const string UnableToMatchAccounts = "Unable_To_Match_Accounts";
+        public const string MfaSetupChallenge = "MFA_Setup_Challenge";
 
         // Verification error codes
         public const string ResendVerificationEmailError = "Resend_Verification_Email_Error";
