@@ -218,7 +218,7 @@ namespace Dte.Common.Helpers
                 errors.Add("The password requires symbols");
             }
 
-            if (IsCommonPassword(password.ToLower()))
+            if (IsCommonPassword(password))
             {
                 errors.Add("The password is too weak");
             }
