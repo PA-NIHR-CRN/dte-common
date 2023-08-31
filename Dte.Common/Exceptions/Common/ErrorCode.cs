@@ -4,6 +4,18 @@ namespace Dte.Common.Exceptions.Common
     {
         // Http codes
         public const string InternalServerError = "InternalServerError";
+        public const string BadRequest = "Bad_Request";
+        public const string NotFound = "Not_Found";
+        public const string Unauthorized = "Unauthorized";
+        public const string Forbidden = "Forbidden";
+        public const string Conflict = "Conflict";
+        public const string UnprocessableEntity = "Unprocessable_Entity";
+        public const string TooManyRequests = "Too_Many_Requests";
+        public const string ServiceUnavailable = "Service_Unavailable";
+        public const string GatewayTimeout = "Gateway_Timeout";
+        public const string RequestTimeout = "Request_Timeout";
+        public const string MethodNotAllowed = "Method_Not_Allowed";
+        public const string UnsupportedMediaType = "Unsupported_Media_Type";
         
         // Authentication codes
         public const string AuthenticationError = "Authentication_Error";
@@ -12,7 +24,6 @@ namespace Dte.Common.Exceptions.Common
         
         // User & Password error codes
         public const string PasswordValidationError = "Password_Validation_Error";
-        
         public const string SignUpError = "SignUp_Error";
         public const string SignUpErrorUsernameExists = "SignUp_Error_Username_Exists";
         public const string SignUpErrorInvalidParameter = "SignUp_Error_Invalid_Parameter";
@@ -33,6 +44,18 @@ namespace Dte.Common.Exceptions.Common
         public const string ChangeEmailErrorUnauthorised = "Change_Email_Error_Unauthorised";
         public const string UserIsUnderage = "User_Is_Underage";
         public const string UnableToMatchAccounts = "Unable_To_Match_Accounts";
+        
+        // MFA error codes
+        public const string MfaSetupChallenge = "Mfa_Setup_Challenge";
+        public const string MfaSmsChallenge = "Sms_Mfa_Challenge";
+        public const string MfaSoftwareTokenChallenge = "Software_Token_Mfa_Challenge";
+        public const string MfaCodeMismatch = "Mfa_Code_Mismatch";
+        public const string MfaSessionExpired = "Mfa_Session_Expired";
+        public const string MfaNoChallenge = "No_Mfa_Challenge";
+        public const string MfaUserNotFound = "Mfa_User_Not_Found";
+        public const string MfaCodeExpired = "Mfa_Code_Expired";
+        public const string MfaReissueSession = "Mfa_Reissue_Session";
+
 
         // Verification error codes
         public const string ResendVerificationEmailError = "Resend_Verification_Email_Error";
