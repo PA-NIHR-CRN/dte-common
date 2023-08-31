@@ -6,13 +6,13 @@ namespace Dte.Common.Helpers
 {
     public static class PasswordHelper
     {
-        private static readonly char[] SymbolList =
+        public static readonly char[] SymbolList =
         {
             '^', '$', '*', '.', ',', '[', ']', '{', '}', '(', ')', '?', '"', '!', '@', '#', '%', '&', '/', '\\', ',',
             '>', '<', '\'', ':', ';', '|', '_', '~', '`', '=', '+', '-'
         };
 
-        private static readonly string[] WeakPasswords =
+        public static readonly string[] WeakPasswords =
         {
             "password",
             "qwerty",
