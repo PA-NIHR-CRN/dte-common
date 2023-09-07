@@ -5,7 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Dte.Common.Http
 {
-    public static class ContentfulServiceExtensions
+    public static class ContentfulServiceCollectionExtensions
     {
         public static void AddContentfulServices(this IServiceCollection services, IConfiguration configuration)
         {
