@@ -1,10 +1,11 @@
 using System.Linq;
 using System.Text;
+using Dte.Common.Contracts;
 using Dte.Common.Models;
 
 namespace Dte.Common.Services
 {
-    public class RichTextToHtmlService
+    public class RichTextToHtmlService : IRichTextToHtmlService
     {
         public string Convert(RichTextNode node, string baseUrl)
         {
@@ -59,11 +60,12 @@ namespace Dte.Common.Services
                         html.Append(
                             $"<a href='{uri}' style='color: #193e72; text-decoration: none'>{node.Content.FirstOrDefault()?.Value}</a>");
                     }
-                    else 
+                    else
                     {
                         html.Append(
                             $"<a href='{baseUrl}{uri}' style='color: #193e72; text-decoration: none'>{baseUrl}{node.Content.FirstOrDefault()?.Value}</a>");
                     }
+
                     html.Append("</span>");
                     break;
             }
