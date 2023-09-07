@@ -24,6 +24,18 @@ namespace Dte.Common.Services
                     html.Append(
                         $"<span style='font-size: 24px; color: #193e72'><strong>{node.Content.FirstOrDefault()?.Value}</strong></span>");
                     break;
+                case "heading-2":
+                    html.Append(
+                        $"<span style='font-size: 20px; color: #193e72'><strong>{node.Content.FirstOrDefault()?.Value}</strong></span>");
+                    break;
+                case "heading-3":
+                    html.Append(
+                        $"<span style='font-size: 18px; color: #193e72'><strong>{node.Content.FirstOrDefault()?.Value}</strong></span>");
+                    break;
+                case "heading-4":
+                    html.Append(
+                        $"<span style='font-size: 16px; color: #193e72'><strong>{node.Content.FirstOrDefault()?.Value}</strong></span>");
+                    break;
 
                 case "paragraph":
                     foreach (var contentNode in node.Content)

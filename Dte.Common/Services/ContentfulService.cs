@@ -1,3 +1,4 @@
+using System.Globalization;
 using System.Threading.Tasks;
 using Contentful.Core;
 using Contentful.Core.Search;
@@ -8,10 +9,12 @@ using HandlebarsDotNet;
 
 namespace Dte.Common.Services
 {
-    public class ContentfulService: IContentfulService
+    public class ContentfulService : IContentfulService
     {
         private readonly IContentfulClient _client;
         private readonly IRichTextToHtmlService _richTextToHtmlConverter;
+        private const string BodyPlaceholder = "###BODY_REPLACE###";
+        private const string DefaultLocale = "en-GB";
 
         public ContentfulService(IContentfulClient client, IRichTextToHtmlService richTextToHtmlConverter)
         {
@@ -19,33 +22,45 @@ namespace Dte.Common.Services
             _richTextToHtmlConverter = richTextToHtmlConverter;
         }
 
-        public async Task<ContentfulEmail> GetContentfulEmailAsync(string entryId, string locale = "en-GB")
+        public async Task<ContentfulEmail> GetContentfulEmailAsync(string entryId, CultureInfo locale)
         {
-            var entry = await _client.GetEntry(entryId, new QueryBuilder<ContentfulEmail>().LocaleIs(locale));
-            return entry;
+            return await _client.GetEntry(entryId,
+                new QueryBuilder<ContentfulEmail>().LocaleIs(locale.ToString()));
         }
 
         public async Task<ContentfulEmailResponse> GetEmailContentAsync(EmailContentRequest request)
         {
-            var contentfulEmail = await GetContentfulEmailAsync(request.EmailName, request.SelectedLocale.ToString());
-            string htmlContent = _richTextToHtmlConverter.Convert(contentfulEmail.EmailBody);
-
-            var htmlBody = CustomMessageEmail.GetCustomMessageHtml().Replace("###BODY_REPLACE###", htmlContent);
-            
-            var data = new
-            {
-                request.Link,
-                request.FirstName
-            };
-
-            var template = Handlebars.Compile(htmlBody);
-            htmlBody = template(data);
+            var selectedLocale = request.SelectedLocale ?? new CultureInfo(DefaultLocale);
+            var contentfulEmail = await GetContentfulEmailAsync(request.EmailName, selectedLocale);
 
             return new ContentfulEmailResponse
             {
                 EmailSubject = contentfulEmail.EmailSubject,
-                EmailBody = htmlBody
+                EmailBody = ConstructEmailHtml(contentfulEmail.EmailBody, request, selectedLocale)
             };
+        }
+
+        private string ConstructEmailHtml(RichTextNode emailBody, EmailContentRequest request,
+            CultureInfo selectedLocale)
+        {
+            string htmlContent = _richTextToHtmlConverter.Convert(emailBody);
+            var htmlTemplate = CustomMessageEmail.GetCustomMessageHtml().Replace(BodyPlaceholder, htmlContent);
+
+            var data = new
+            {
+                link = request.Link,
+                firstName = ToTitleCase(request.FirstName, selectedLocale)
+            };
+
+            var template = Handlebars.Compile(htmlTemplate);
+            return template(data);
+        }
+
+        private static string ToTitleCase(string input, CultureInfo cultureInfo)
+        {
+            return string.IsNullOrWhiteSpace(input)
+                ? string.Empty
+                : cultureInfo.TextInfo.ToTitleCase(input.ToLower(cultureInfo));
         }
     }
 }

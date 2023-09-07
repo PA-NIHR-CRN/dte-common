@@ -6,7 +6,7 @@ namespace Dte.Common.Contracts
 {
     public interface IContentfulService
     {
-        Task<ContentfulEmail> GetContentfulEmailAsync(string entryId, string locale);
+        Task<ContentfulEmail> GetContentfulEmailAsync(string entryId, CultureInfo locale);
         Task<ContentfulEmailResponse> GetEmailContentAsync(EmailContentRequest request);
     }
 }
