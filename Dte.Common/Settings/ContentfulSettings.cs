@@ -2,7 +2,7 @@ namespace Dte.Common
 {
     public class ContentfulSettings
     {
-        public static readonly string ConfigSectionName = "ContentfulSettings";
+        public static readonly string SectionName = "ContentfulSettings";
         public string DeliveryApiKey { get; set; }
         public string PreviewApiKey { get; set; }
         public string SpaceId { get; set; }
@@ -16,5 +16,11 @@ namespace Dte.Common
         public string ResendCode { get; set; }
         public string SignUp { get; set; }
         public string UpdateUserAttribute { get; set; }
+        public string NhsAccountExists { get; set; }
+        public string NhsPasswordReset { get; set; }
+        public string EmailAccountExists { get; set; }
+        public string NhsSignUp { get; set; }
+        public string MfaEmailConfirmation { get; set; }
+        public string MfaMobileNumberVerification { get; set; }
     }
 }

@@ -404,32 +404,6 @@ namespace Dte.Common.Content
                             ""
                           >
                             ###BODY_REPLACE###
-                            <p style=""display: block; margin: 13px 0"">
-                              <span style=""font-size: 16px""
-                                >The Be Part of Research team
-                              </span>
-                            </p>
-                            <hr />
-                            <p style=""display: block; margin: 13px 0"">
-                              <span style=""font-size: 16px""
-                                >This is an automated email, please do not reply
-                                directly to this email address.
-                              </span>
-                            </p>
-                            <p style=""display: block; margin: 13px 0"">
-                              <span style=""font-size: 16px""
-                                >If you have any questions about your Be Part of
-                                Research account or taking part in research, see
-                                our
-                                <a
-                                  href=""https://bepartofresearch.nihr.ac.uk/volunteer-service/""
-                                  target=""_blank""
-                                  rel=""noopener noreferrer""
-                                >
-                                  frequently asked questions.
-                                </a></span
-                              >
-                            </p>
                           </div>
                         </td>
                       </tr>

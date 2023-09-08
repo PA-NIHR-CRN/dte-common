@@ -49,7 +49,8 @@ namespace Dte.Common.Services
             var data = new
             {
                 link = request.Link,
-                firstName = ToTitleCase(request.FirstName, selectedLocale)
+                firstName = ToTitleCase(request.FirstName, selectedLocale),
+                code = request.Code
             };
 
             var template = Handlebars.Compile(htmlTemplate);
