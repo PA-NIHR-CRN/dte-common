@@ -25,7 +25,6 @@ namespace Dte.Common.Services
                     {
                         html.Append(Convert(contentNode));
                     }
-
                     break;
 
                 case "heading-1":
@@ -46,12 +45,12 @@ namespace Dte.Common.Services
                     break;
 
                 case "paragraph":
+                    html.Append("<p style='display: block; margin: 13px 0'>");
                     foreach (var contentNode in node.Content)
                     {
-                        html.Append(
-                            $"<p style='display: block; margin: 13px 0'>{Convert(contentNode)}</p>");
+                        html.Append(Convert(contentNode));
                     }
-
+                    html.Append("</p>");
                     break;
 
                 case "text":
