@@ -57,6 +57,9 @@ namespace Dte.Common.Services
                 case "text":
                     html.Append($"<span style='font-size: 16px'>{node.Value}</span>");
                     break;
+                case "hr":
+                    html.Append("<hr />");
+                    break;
 
                 case "hyperlink":
                     var uri = node.Data["uri"].ToString();
