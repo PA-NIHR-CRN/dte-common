@@ -8,6 +8,5 @@ namespace Dte.Common.Models
         public CultureInfo SelectedLocale { get; set; }
         public string Link { get; set; }
         public string FirstName { get; set; }
-        public string BaseUrl { get; set; }
     }
 }

@@ -43,7 +43,7 @@ namespace Dte.Common.Services
         private string ConstructEmailHtml(RichTextNode emailBody, EmailContentRequest request,
             CultureInfo selectedLocale)
         {
-            string htmlContent = _richTextToHtmlConverter.Convert(emailBody, request.BaseUrl);
+            string htmlContent = _richTextToHtmlConverter.Convert(emailBody);
             var htmlTemplate = CustomMessageEmail.GetCustomMessageHtml().Replace(BodyPlaceholder, htmlContent);
 
             var data = new

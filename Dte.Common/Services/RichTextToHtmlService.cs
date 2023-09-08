@@ -7,7 +7,14 @@ namespace Dte.Common.Services
 {
     public class RichTextToHtmlService : IRichTextToHtmlService
     {
-        public string Convert(RichTextNode node, string baseUrl)
+        private readonly AppSettings _appSettings;
+
+        public RichTextToHtmlService(AppSettings appSettings)
+        {
+            _appSettings = appSettings;
+        }
+
+        public string Convert(RichTextNode node)
         {
             StringBuilder html = new StringBuilder();
 
@@ -16,7 +23,7 @@ namespace Dte.Common.Services
                 case "document":
                     foreach (var contentNode in node.Content)
                     {
-                        html.Append(Convert(contentNode, baseUrl));
+                        html.Append(Convert(contentNode));
                     }
 
                     break;
@@ -42,7 +49,7 @@ namespace Dte.Common.Services
                     foreach (var contentNode in node.Content)
                     {
                         html.Append(
-                            $"<p style='display: block; margin: 13px 0'>{Convert(contentNode, baseUrl)}</p>");
+                            $"<p style='display: block; margin: 13px 0'>{Convert(contentNode)}</p>");
                     }
 
                     break;
@@ -63,7 +70,7 @@ namespace Dte.Common.Services
                     else
                     {
                         html.Append(
-                            $"<a href='{baseUrl}{uri}' style='color: #193e72; text-decoration: none'>{baseUrl}{node.Content.FirstOrDefault()?.Value}</a>");
+                            $"<a href='{_appSettings.WebAppBaseUrl}{uri}' style='color: #193e72; text-decoration: none'>{_appSettings.WebAppBaseUrl}{node.Content.FirstOrDefault()?.Value}</a>");
                     }
 
                     html.Append("</span>");

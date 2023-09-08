@@ -4,6 +4,6 @@ namespace Dte.Common.Contracts
 {
     public interface IRichTextToHtmlService
     {
-        string Convert(RichTextNode richTextNode, string baseUrl);
+        string Convert(RichTextNode richTextNode);
     }
 }
