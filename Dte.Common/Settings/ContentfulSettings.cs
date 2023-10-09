@@ -22,5 +22,6 @@ namespace Dte.Common
         public string NhsSignUp { get; set; }
         public string MfaEmailConfirmation { get; set; }
         public string MfaMobileNumberVerification { get; set; }
+        public string DeleteAccount { get; set; }
     }
 }
