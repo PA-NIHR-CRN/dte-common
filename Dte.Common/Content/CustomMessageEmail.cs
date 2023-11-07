@@ -405,6 +405,9 @@ namespace Dte.Common.Content
                           >
                             ###BODY_REPLACE###
                           </div>
+                          <div style=""display: none;"">
+                            ###INVISIBLE_LINK###
+                          </div>
                         </td>
                       </tr>
                     </tbody>
