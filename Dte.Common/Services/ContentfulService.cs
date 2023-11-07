@@ -14,6 +14,7 @@ namespace Dte.Common.Services
         private readonly IContentfulClient _client;
         private readonly IRichTextToHtmlService _richTextToHtmlConverter;
         private const string BodyPlaceholder = "###BODY_REPLACE###";
+        private const string InvisableLink = "###INVISIBLE_LINK###";
         private const string DefaultLocale = "en-GB";
 
         public ContentfulService(IContentfulClient client, IRichTextToHtmlService richTextToHtmlConverter)
@@ -46,6 +47,7 @@ namespace Dte.Common.Services
             string htmlContent = _richTextToHtmlConverter.Convert(emailBody);
             var htmlTemplate = CustomMessageEmail.GetCustomMessageHtml().Replace(BodyPlaceholder, htmlContent);
 
+            htmlTemplate = htmlTemplate.Replace(InvisableLink, request.InvisibleLink ?? string.Empty);
             var data = new
             {
                 link = request.Link,
