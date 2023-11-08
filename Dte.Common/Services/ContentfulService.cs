@@ -43,8 +43,7 @@ namespace Dte.Common.Services
             CultureInfo selectedLocale)
         {
             var htmlContent = _richTextToHtmlConverter.Convert(emailBody);
-            var htmlTemplate = CustomMessageEmail.GetCustomMessageHtml(htmlContent,
-                request.InvisibleCognitoCodeParameter);
+            var htmlTemplate = CustomMessageEmail.GetCustomMessageHtml(htmlContent);
             
             var data = new
             {
