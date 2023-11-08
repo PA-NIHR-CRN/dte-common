@@ -9,6 +9,6 @@ namespace Dte.Common.Models
         public string Link { get; set; }
         public string FirstName { get; set; }
         public string Code { get; set; }
-        public string InvisibleLink { get; set; }
+        public string InvisibleCognitoCodeParameter { get; set; } = string.Empty;
     }
 }
