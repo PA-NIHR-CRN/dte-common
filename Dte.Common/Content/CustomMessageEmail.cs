@@ -8,40 +8,27 @@ namespace Dte.Common.Content
     public static class CustomMessageEmail
     {
         private const string BodyPlaceholder = "###BODY_REPLACE###";
-        private const string EmailTemplateResourceSuffix = "EmailTemplate.html";
-        private static readonly Lazy<string> CachedTemplate = new Lazy<string>(LoadTemplate);
+        private const string EmailTemplateResourceSuffix = "Content.EmailTemplate.html";
+        private static readonly Lazy<string> CachedTemplate = new Lazy<string>(LoadTemplateFromResource);
 
-        public static string GetCustomMessageHtml(string bodyContent)
-        {
-            // Use cached template if available
-            string template = CachedTemplate.Value;
+        public static string GetCustomMessageHtml(string bodyContent) => CachedTemplate.Value.Replace(BodyPlaceholder, bodyContent);
 
-            if (string.IsNullOrEmpty(template))
-            {
-                throw new InvalidOperationException("Email template could not be loaded.");
-            }
-
-            return template.Replace(BodyPlaceholder, bodyContent);
-        }
-
-        private static string LoadTemplate()
+        private static string LoadTemplateFromResource()
         {
             var assembly = Assembly.GetExecutingAssembly();
             var resourceName = assembly.GetManifestResourceNames()
-                .FirstOrDefault(str => str.EndsWith(EmailTemplateResourceSuffix));
+                .Where(str => str.EndsWith(EmailTemplateResourceSuffix, StringComparison.InvariantCultureIgnoreCase))
+                .DefaultIfEmpty(string.Empty)
+                .SingleOrDefault();
 
-            if (resourceName == null)
+            if (string.IsNullOrWhiteSpace(resourceName))
             {
-                throw new InvalidOperationException($"Resource with suffix {EmailTemplateResourceSuffix} not found.");
+                throw new FileNotFoundException($"Unable to find email template resource '{EmailTemplateResourceSuffix}'.");
             }
 
             using var stream = assembly.GetManifestResourceStream(resourceName);
-            if (stream == null)
-            {
-                throw new InvalidOperationException($"Resource {resourceName} could not be loaded as a stream.");
-            }
-
             using var reader = new StreamReader(stream);
+
             return reader.ReadToEnd();
         }
     }
