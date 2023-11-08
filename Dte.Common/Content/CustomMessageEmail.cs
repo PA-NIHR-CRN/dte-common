@@ -9,9 +9,9 @@ namespace Dte.Common.Content
     {
         private const string BodyPlaceholder = "###BODY_REPLACE###";
         private const string EmailTemplateResourceSuffix = "Content.EmailTemplate.html";
-        private static readonly Lazy<string> CachedTemplate = new Lazy<string>(LoadTemplateFromResource);
+        private static readonly Lazy<string> EmailTemplate = new Lazy<string>(LoadTemplateFromResource);
 
-        public static string GetCustomMessageHtml(string bodyContent) => CachedTemplate.Value.Replace(BodyPlaceholder, bodyContent);
+        public static string GetCustomMessageHtml(string bodyContent) => EmailTemplate.Value.Replace(BodyPlaceholder, bodyContent);
 
         private static string LoadTemplateFromResource()
         {
