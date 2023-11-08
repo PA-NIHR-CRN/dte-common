@@ -23,7 +23,7 @@ namespace Dte.Common.Content
 
             if (string.IsNullOrWhiteSpace(resourceName))
             {
-                throw new FileNotFoundException($"Unable to find email template resource '{EmailTemplateResourceSuffix}'.");
+                throw new FileNotFoundException($"Email template resource '{EmailTemplateResourceSuffix}' not found.");
             }
 
             using var stream = assembly.GetManifestResourceStream(resourceName);
