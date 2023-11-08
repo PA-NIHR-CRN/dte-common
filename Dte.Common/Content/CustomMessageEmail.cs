@@ -1,26 +1,48 @@
+using System;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 
 namespace Dte.Common.Content
 {
     public static class CustomMessageEmail
     {
         private const string BodyPlaceholder = "###BODY_REPLACE###";
-        
+        private const string EmailTemplateResourceSuffix = "EmailTemplate.html";
+        private static readonly Lazy<string> CachedTemplate = new Lazy<string>(LoadTemplate);
+
         public static string GetCustomMessageHtml(string bodyContent)
         {
-            // get the html template as an embedded resource, so that it is included in the assembly
-            var assembly = typeof(CustomMessageEmail).Assembly;
+            // Use cached template if available
+            string template = CachedTemplate.Value;
+
+            if (string.IsNullOrEmpty(template))
+            {
+                throw new InvalidOperationException("Email template could not be loaded.");
+            }
+
+            return template.Replace(BodyPlaceholder, bodyContent);
+        }
+
+        private static string LoadTemplate()
+        {
+            var assembly = Assembly.GetExecutingAssembly();
             var resourceName = assembly.GetManifestResourceNames()
-                .Single(str => str.EndsWith("EmailTemplate.html")); 
-            var stream = assembly.GetManifestResourceStream(resourceName);
-            var reader = new StreamReader(stream);
-            var htmlContent = reader.ReadToEnd();
+                .FirstOrDefault(str => str.EndsWith(EmailTemplateResourceSuffix));
 
-            htmlContent = htmlContent
-                .Replace(BodyPlaceholder, bodyContent);
+            if (resourceName == null)
+            {
+                throw new InvalidOperationException($"Resource with suffix {EmailTemplateResourceSuffix} not found.");
+            }
 
-            return htmlContent;
+            using var stream = assembly.GetManifestResourceStream(resourceName);
+            if (stream == null)
+            {
+                throw new InvalidOperationException($"Resource {resourceName} could not be loaded as a stream.");
+            }
+
+            using var reader = new StreamReader(stream);
+            return reader.ReadToEnd();
         }
     }
 }
