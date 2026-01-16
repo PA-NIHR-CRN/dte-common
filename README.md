@@ -45,3 +45,8 @@ The DTE Common project is a utility library which you can reference in your .NET
 - `ITraceWriter`: This is used for output tracing, which can help in logging and debugging.
 
 Each interface may have its own usage nuances and these should be used according to the specific needs of your application.
+
+## Publish a new package
+Merging to main publishes a package version of *-preview
+Create a release branch, release and tag to create a new version e.g. v1.7.10.
+Update consuming applications e.g. <PackageReference Include="Dte.Common" Version="1.7.10" />
